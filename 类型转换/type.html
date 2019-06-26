@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>类型转换</title>
+</head>
+<body>
+    <script>
+        //数值显示类型转换
+        console.log('----------------------');
+        console.log(Number('123'));     //123
+        console.log(Number('123abc'));  //NaN
+        console.log(Number(true));  //1
+        console.log(Number(undefined));  //NaN
+        console.log(Number(null))   //0
+        console.log('----------------------');
+        //数值复合类型转换
+        //先调用自身的valueOf函数，如果返回的是显示类型值则直接调用Number函数
+        //先调用自身的valueOf函数，如果返回的是复合类型值，则继续调用toString()方法返回原始类型方法，再调用Number函数，完成后不再继续操作。
+        //如果调用toString()方法后还是复合类型，则报错
+        console.log(Number([1,2]));     //NaN 
+        console.log(Number({a:1}));     //NaN
+        console.log('----------------------');
+        //字符串显示类型转换
+        console.log(String(123));   // 123
+        console.log(String(true));  // "true"
+        console.log(String(undefined));     // "undefined"
+        console.log(String(null));  // "null"
+        console.log('----------------------');
+        //字符串复合类型
+        //调用自身的toString()方法，如果返回显示类型则直接使用String()
+        //如果返回是复合类型，则再调用valueOf方法，如果返回的是原始类型的值，则使用string()方法
+        //如果valueOf返回的是复合类型的值，则报错
+        var a = {
+            a: 1,
+            toString: function(){
+                return {
+                    a: "toString"
+                };
+            },
+            valueOf: function(){
+                return 123
+            }
+        };
+        console.log('String:' + String(a));
+        console.log('----------------------');
+        //boolean类型的转换
+        //undefine、null、+0、-0、NaN、''为false，其它都为true
+        console.log(Boolean(123));                  //true
+        console.log(Boolean('123'));                //true
+        console.log(Boolean(undefined));        //false
+        console.log(Boolean(null));             //false
+        console.log('----------------------');
+        //常见题目
+        console.log([]+[]);       //""
+        console.log([]+{});       //"[object Object]"
+        console.log({}+[]);       //"[object Object]"
+        console.log({}+{});       //"[object Object] [object Object]"
+        console.log(true + true);   // 2
+        console.log(1 + {a:1}); //  "1[object Object]"
+    </script>
+</body>
+</html>
