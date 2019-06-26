@@ -1,0 +1,29 @@
+1、dom事件的级别。
+dom0 onclick=function(){}; 
+dom2 dom.addEventListener("click", function(){}, false)
+dom3 dom.addEventListener("keyup", function(){}, false)
+
+2、dom事件模型。
+捕获： 由上往下。
+冒泡： 由下往上。
+
+3、dom事件流。
+捕获——目标事件——冒泡
+
+4、描述dom事件捕获的具体流程。
+window——document——html——body-父元素——目标元素
+
+5、event对象的使用场景。
+event.preventDefault() 阻止默认事件（例：<a href="www.baidu.com"></a>)
+event.stopPropagation() 阻止冒泡事件
+event.stopImmediatePropagation() 如两个元素绑定了同一个事件，当A调用改函数。则阻止B元素事件响应。
+event.currentTarget 事件冒泡阶段内的当前dom元素，一般等于this
+event.target 返回事件触发的目标节点
+
+6、自定义dom事件。
+var eve = new Event("test");
+
+dom.addEventListener("test", function(){}, false);
+
+dom.dispatchEvent(eve);
+

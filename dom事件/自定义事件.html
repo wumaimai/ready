@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom事件捕获流程</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .box{
+            width: 100px;
+            height: 50px;
+            background-color: aqua;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <section class="module">
+        <div class="box" id="catch">
+            click
+        </div>
+    </section>
+
+    <script>
+        var eve = new Event("test1");
+        var dom = document.getElementById("catch");
+
+        dom.addEventListener("test1", function(){
+            console.log("test1");
+        }, false);
+
+        dom.dispatchEvent(eve);
+
+        var customEve = new CustomEvent("test2", {detail:2});
+
+        dom.addEventListener("test2",  (param)=>{
+            var { detail } = param;
+            console.log("test2" + detail);
+        }, false);
+
+        dom.dispatchEvent(customEve);
+    </script>
+</body>
+</html>

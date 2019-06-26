@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css盒模型</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .module{
+            overflow: hidden;
+        }
+
+        .box{
+            margin-top: 10px;
+            height: 200px;
+            background-color: aqua;
+            overflow: auto;
+        }
+
+        .box p{
+            background-color: bisque;
+            margin: 5px auto 25px;
+        }
+
+        .box-left{
+            width: 100px;
+            height: 100px;
+            float: left;
+            background-color: brown
+        }
+
+        .box-right{
+            height: 110px;
+            overflow: hidden;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <section class="module">
+        <div class="box">
+            <p>one</p>
+            <div style="overflow: auto">
+                <p>two</p>
+            </div>
+            <p>three</p>
+        </div>
+    </section>
+
+    <section class="module">
+        <div class="box-left"></div>
+        <div class="box-right"></div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面布局</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+
+        html,body{
+            height: 100%;
+        }
+
+        section.layout-flex{
+            height: 100%;
+        }
+
+        .box{
+             display: flex;
+             flex-direction: column;
+             height: 100%;
+        }
+
+        .box-top{
+            height: 100px;
+            background-color: aqua;
+        }
+
+        .box-center{
+            background-color:chocolate;
+            flex: 1 1 auto;
+        }
+
+        .box-button{
+            height: 100px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <section class="layout-flex">
+        <article class="box">
+            <div class="box-top">我是top</div>
+            <div class="box-center">我是center
+                <p>内容1</p>
+                <p>内容1</p>
+                <p>内容1</p>
+                <p>内容1</p>
+                <p>内容1</p>
+                <p>内容1</p>
+                <p>内容1</p>
+            </div>
+            <div class="box-button">我是button</div>
+        </article>
+    </section>
+</body>
+</html>

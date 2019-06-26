@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面布局</title>
+    <style>
+        html *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .layout-flex{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .box-left{
+            width: 300px;
+            background-color: aqua;
+            
+        }
+
+        .box-center{
+            background-color:chocolate;
+            flex: 1 1 auto;
+        }
+
+        .box-right{
+            width: 300px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <article class="layout-flex">
+        <div class="box-left">left</div>
+        <div class="box-center">center</div>
+        <div class="box-right">right</div>
+    </article>
+</body>
+</html>
