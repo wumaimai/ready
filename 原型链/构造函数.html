@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构造函数</title>
+</head>
+<body>
+    <script>
+        var m = function(m){
+            this.m = m;
+        }
+        var M = new m(1);
+        //原型对象的constructor属性指向的是函数本身。
+        console.log(m.prototype.constructor === m);  //true
+        //实例的__proto__属性指向的是原型对象
+        console.log(M.__proto__ === m.prototype);   //true
+        //如果上层的原型链找不到，会依次往上找，直到找到Object.prototype原型对象为止
+        console.log(m.prototype.__proto__ === Object.prototype);  //true
+        //每个函数也是一个原型对象，继承的是Funtion.prototype
+        console.log(m.__proto__ === Function.prototype);
+
+        //instance运算符的常规用法；
+        //与typeof不同的是，typeof无论引用什么类型的对象，它都会返回object，而instanceof则明确开发者确定对象为某特定类型。
+        console.log(M instanceof m);    //true
+    </script>
+</body>
+</html>

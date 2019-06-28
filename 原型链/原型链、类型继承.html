@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组合继承</title>
+</head>
+<body>
+    <script>
+        var funcA = function(param1){
+            this.param1 = param1;
+            console.log("我是funcA里的" + this.a);
+            console.log("我是funcA里的" + this.b);
+        }
+
+        funcA.prototype.aa = function(){
+            console.log("我是一个挂载在原型对象上的函数！，我想输出'"+this.param1+"'");
+        }
+
+        var funcB = function(a,b,c){
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            //类继承
+            funcA.apply(this,[123]);
+        }
+        //funcB.prototype = new funcA();
+        //funcB.prototype = funcA.prototype;
+        //为什么不直接funcB.prototype = funcA.prototype呢？
+        //通过中间层来使得funcA、funcB保持独立对象。不然会造成constructor属性强耦合。
+        //原型继承
+        var B = new funcB(1,2,3);
+        //instanceof在继承关系中的用法
+        console.log(B instanceof funcA);
+
+        console.log("-------------------------");
+        //new关键字与Object.create()的用法以及区别
+        var obj = Object.create(funcA);
+        console.log(obj);
+    </script>
+</body>
+</html>
