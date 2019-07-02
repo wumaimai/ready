@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+        var funcA = function(param1){
+            this.param1 = param1;
+            console.log("我是funcA里的" + this.a);
+            console.log("我是funcA里的" + this.b);
+        }
+
+        funcA.prototype.aa = function(){
+            console.log("我是一个挂载在原型对象上的函数！，我想输出'"+this.param1+"'");
+        }
+
+        var funcB = function(a,b,c){
+            this.a = a;
+            this.b = b;
+            this.c = c;
+            //类继承
+            funcA.apply(this,[123]);
+        }
+        //funcB.prototype = new funcA();
+        //funcB.prototype = funcA.prototype;
+        //为什么不直接funcB.prototype = funcA.prototype呢？
+        //通过中间层来使得funcA、funcB保持独立对象。不然会造成constructor属性强耦合。
+        //原型继承
+        var B = new funcB(1,2,3);
+        //instanceof在继承关系中的用法
+        console.log(B instanceof funcA);
+
+        console.log("-------------------------");
+        //new关键字与Object.create()的用法以及区别
+        var obj = Object.create(funcA);
+        console.log(obj);
+
+
+        //示例
+        //类继承
+        var extends1 = function(){
+            var parent = function(){
+                this.base = "parent";
+            }
+
+            parent.prototype.funcParent = function(){
+                console.log("我是parent");
+            }
+
+            var child = function(){
+                parent.apply(this);
+                this.imp = "child";
+            }
+
+            var instance = new child();
+            //缺点，无法继承原型对象
+            console.log("类继承",instance);
+        }
+
+        //原型对象继承
+        var extends2 = function(){
+            var parent = function(){
+                this.base = "parent";
+                this.play = [1,2,3];
+            }
+
+            parent.prototype.funcParent = function(){
+                console.log("我是parent");
+            }
+
+            var child = function(){
+                this.imp = "child";
+            }
+
+            child.prototype = new parent();
+
+            var instance1 = new child();
+            var instance2 = new child();
+            instance1.play.push(4);
+            //缺点，原型链上的原型对象也是共用的。
+            //在改变一个实例的属性的同时，其它实例的属性也会改变
+            console.log("原型继承，","子类的实例：",instance1.play);
+            console.log("原型继承，","父类的实例：",instance2.play);
+        }
+
+        //组合继承
+        var extends3 = function(){
+            var parent = function(){
+                this.base = "parent";
+                this.play = [1,2,3];
+            }
+
+            parent.prototype.funcParent = function(){
+                console.log("我是parent");
+            }
+
+            var child = function(){
+                parent.apply(this);
+                this.imp = "child";
+            }
+
+            child.prototype = new parent();
+
+            var instance1 = new child();
+            var instance2 = new child();
+            instance1.play.push(4);
+            //缺点，在继承时会执行父类上下文两次
+            console.log("原型继承，","子类的实例：",instance1.play);
+            console.log("原型继承，","父类的实例：",instance2.play);
+        }
+
+        //组合继承优化
+        var extends4 = function(){
+            var parent = function(){
+                this.base = "parent";
+                this.play = [1,2,3];
+            }
+
+            parent.prototype.funcParent = function(){
+                console.log("我是parent");
+            }
+
+            var child = function(){
+                parent.apply(this);
+                this.imp = "child";
+            }
+
+            child.prototype = parent.prototype;
+
+            var instance1 = new child();
+            instance1.play.push(4);
+            //缺点，无法区分是子类的constructor还是父类的constructor
+            console.log("原型继承，","子类的实例：",instance1);
+            console.log(instance1.__proto__.constructor===parent);  //true
+        }
+
+        //组合继承优化
+        var extends5 = function(){
+            var parent = function(){
+                this.base = "parent";
+                this.play = [1,2,3];
+            }
+
+            parent.prototype.funcParent = function(){
+                console.log("我是parent");
+            }
+
+            var child = function(){
+                parent.apply(this);
+                this.imp = "child";
+            }
+            //child.prototype.constructor
+            //ƒ (){
+            //                this.base = "parent";
+            //                this.play = [1,2,3];
+            //            }
+            child.prototype = Object.create(parent.prototype);
+            //手动改变子类的原型对象constructor属性
+            child.prototype.constructor = child;
+            var instance1 = new child();
+            instance1.play.push(4);
+            //perfect
+            console.log("原型继承，","子类的实例：",instance1);
+        }
+
+        extends1();
+        extends2();
+        extends3();
+        extends4();
+        extends5();
+    </script>
+</body>
+</html>
