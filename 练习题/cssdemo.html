@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>布局demo</title>
+    <style>
+        html *{
+            margin: 0;
+            padding: 0;
+        }
+        article{
+            margin-bottom: 10px;
+        }
+        .parent{
+            width: 300px;
+            height: 250px;
+            background-color: bisque;
+            position: relative;
+        }
+        .child{
+            background-color: aqua;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .flex-parent{
+            width: 300px;
+            height: 250px;
+            background-color: bisque;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .flex-child{
+            background-color: aqua;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section>
+        <!-- 绝对布局方案 -->
+        <article>
+            <div class="parent">
+                <div class="child">
+                    我是一个child
+                </div>
+            </div>
+        </article>
+        <!-- flex布局方案 -->
+        <article>
+            <div class="flex-parent">
+                <div class="flex-child">
+                    我是一个child
+                </div>
+            </div>
+        </article>
+    </section>
+</body>
+</html>

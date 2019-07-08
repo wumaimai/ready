@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+</head>
+<body>
+    <script>
+        //得到一个连续出现的元素
+        var str = "aabbbccccbc";
+        var obj = {};
+        for(let item in str){
+            console.log(str[item]);
+            if(obj[str[item]]){
+                if(str[item] == str[item-1])
+                {
+                    obj[str[item]]++
+                }   
+            }
+            else{
+                obj[str[item]] = 1;
+            }
+        }
+        var key = Object.keys(obj);
+        var value = Object.values(obj);
+        var maxValue = Math.max(...value);
+        console.log(key[value.indexOf(maxValue)], maxValue);
+
+        //---------------------------------
+
+        //如何得到以下年龄最大的同学,并让他们年龄由大到小排序
+        var student = [
+            {"name": "张三", "age": 18},
+            {"name": "李四", "age": 20},
+            {"name": "王五","age": 22},
+            {"name": "3少爷","age": 17}
+        ]
+
+        var sortStudent = student.sort(function(a, b){
+            return b.age - a.age;
+        });
+
+        console.log(sortStudent);
+
+        //---------------------------------
+        //Fri Jul 05 2019 09:57:13 GMT+0800 (中国标准时间)
+        //用正则得到 [Fri, Jul, 05, 2019, 09, 57, 13]
+        var strTime = "Fri Jul 05 2019 09:57:13 GMT+0800 (中国标准时间)";
+        var replaceStr = strTime.replace(/\s/g, ",").replace(/:/g, ",");
+        console.log(replaceStr.split(","));
+    </script>
+
+
+</body>
+</html>

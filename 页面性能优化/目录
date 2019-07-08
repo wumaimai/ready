@@ -1,0 +1,37 @@
+提升页面性能的方法有哪些？
+1、资源压缩合并，减少http请求。
+通过gzip进行压缩，使用压缩工具，对资源文件进行整合。
+
+2、合理使用浏览器缓存、缓存的分类、缓存的原理。
+强缓存
+//缓存到本地磁盘、不通过请求直接使用
+expires Wed, 07 Aug 2019 11:47:54 GMT //服务器的绝对时间，和客户端时间可能有分叉
+
+cache-control: max-age=2592000  //服务器的相对时间
+
+如果都下发了，以cache-control为主
+
+协商缓存
+//浏览器发现有这个缓存，跟服务协商是否能使用
+last-modified  //从服务器拿到资源的下发时间
+if-modified-Since   //请求时给服务器带入的时间，进行对比
+缺点，可能时间变化了，但是文件内容没变
+
+etag    //服务器下发的hash值。
+if-none-match  //过了强缓存时期时，会带一个if-none-match值，判断etag值是否改变。
+
+
+3、非核心代码异步加载、异步加载的方式、异步加载的区别。
+（1）异步加载的方式。
+动态标签、defer、async
+（2）异步加载的区别。
+defer是在html解析后才会执行，如果是多个，按照加载的顺序依次执行。
+async是在加载完后立即执行，如果是多个，执行顺序与加载顺序无关。
+
+4、使用cdn。
+花钱买吧。
+
+5、预解析dns。
+<meta name="x-dns-prefetch-control" content="on">   //打开dns预解析
+<meta name="x-dns-prefetch-control" content="off">  //关闭dns预解析
+<link ref="dns-prefetch" href="//api.share.baidu.com">
