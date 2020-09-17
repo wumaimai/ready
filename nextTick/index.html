@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nextTick</title>
+</head>
+
+<body>
+    <div id="test">hello word</div>
+    <script src="./nextTick.js"></script>
+    <script>
+        let test = document.getElementById('test');
+        console.log(test.innerText);
+
+        nextTick(() => {
+            console.log(test.innerText + '：cb');
+        });
+
+        nextTick().then(() => {
+            console.log(test.innerText + '：promise');
+        });
+        setTimeout(() => {
+            console.log(test.innerText + '：settimeout');
+        }, 0);
+        test.innerText = 'hello vue'
+    </script>
+</body>
+
+</html>
