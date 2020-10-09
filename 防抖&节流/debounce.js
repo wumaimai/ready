@@ -1,3 +1,4 @@
+//节流
 function debounce(fn, time) {
     let timer = null;
     return function () {

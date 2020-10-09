@@ -1,3 +1,4 @@
+//防抖
 function throttle(fn, time) {
     let canRun = true;
     return function () {
