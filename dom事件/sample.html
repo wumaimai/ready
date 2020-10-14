@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 150px;
+            background: #cccccc;
+            font-size: 18px;
+            color: red;
+            text-align: center;
+            line-height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="p" class="parent-box">
+        <div id="d" class="box">click</div>
+    </div>
+
+    <script>
+        var elementD = document.getElementById('d');
+        var elementP = document.getElementById('p');
+        elementP.addEventListener('click', function (event) {
+            console.log('我来了parent：', event);
+        }, false);
+        elementD.addEventListener('click', function (event) {
+            console.log('我来了1：', event);
+            //event.stopPropagation();
+            event.stopImmediatePropagation();
+        }, false);
+        elementD.addEventListener('click', function (event) {
+            console.log('我来了2：', event);
+        }, false);
+    </script>
+</body>
+
+</html>
