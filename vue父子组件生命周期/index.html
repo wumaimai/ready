@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue子组件、父组件生命周期执行过程</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="demo">
+        <div>父组件</div>
+        <item></item>
+    </div>
+    <!-- item template -->
+    <script type="text/x-template" id="item-template">
+        <div>子组件</div>
+    </script>
+    <script>
+        Vue.component('item', {
+            template: '#item-template',
+            beforeCreate() {
+                console.log('子组件beforeCreated！');
+            },
+            created() {
+                console.log('子组件created');
+            },
+            mounted() {
+                console.log('子组件mounted');
+            }
+        })
+        new Vue({
+            el: '#demo',
+            data: {},
+            beforeCreate() {
+                console.log('父组件beforeCreated！');
+            },
+            created() {
+                console.log('父组件created！');
+            },
+            mounted() {
+                console.log('父组件mounted！');
+            }
+        });
+    </script>
+</body>
+
+</html>
