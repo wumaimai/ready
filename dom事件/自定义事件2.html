@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义事件2</title>
+    <style>
+        .auto-w {
+            width: 300px;
+            height: 150px;
+            background: #cccccc;
+            font-size: 18px;
+            color: red;
+            text-align: center;
+            line-height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="auto" class="auto-w" onclick="handleClick()">
+        自定义事件
+    </div>
+</body>
+<script>
+    var ev = new Event('ev');
+    var element = document.getElementById('auto');
+    element.addEventListener('ev', function (event) {
+        console.log('我是自定义事件', event);
+    }, false)
+    function handleClick() {
+        console.log('click');
+        element.dispatchEvent(ev);
+        element.dispatchEvent(evCustom);
+    }
+
+    //customEvent
+    var evCustom = new CustomEvent('custom', { a: 1 });
+    element.addEventListener('custom', (params) => {
+        console.log('我是自定义事件（带参数）！', params);
+    }, false)
+
+</script>
+
+</html>

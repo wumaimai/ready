@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委托</title>
+    <style>
+        .u-wrap {
+            overflow: hidden;
+        }
+
+        .u-wrap li {
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            background: red;
+            font-size: #ffffff;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ul" class="u-wrap">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>D</li>
+    </ul>
+
+</body>
+<script>
+    var element = document.getElementById('ul');
+    element.addEventListener('click', function (e) {
+        var event = e || window.e;
+        var _target = event.target || event.srcElement;
+        if(_target.tagName.toLocaleLowerCase() == 'li'){
+            console.log(_target.innerText);
+        }
+    }, false);
+</script>
+
+</html>
