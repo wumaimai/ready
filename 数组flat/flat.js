@@ -24,7 +24,17 @@ function flatByDeep(arr, deep) {
 }
 
 
+//使用 es6 reduce
+function flatByReduce(arr) {
+    return arr.reduce((total, currentValue) => {
+        return total.concat(currentValue);
+    }, []);
+}
+
 const a = [1, [2, 3], [[4, 5], [6, 7]]];
 
-console.log(flat(a));
-console.log(flatByDeep(a, 2));
+const b = [[1, 2], [3, 4]]
+
+console.log(flatByReduce(a));
+//console.log(flat(a));
+//console.log(flatByDeep(a, 2));

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪数组</title>
+</head>
+
+<body>
+    <script>
+        const weiArr = {
+            '0': 'a',
+            '1': 'b',
+            '2': 'c',
+            'length': 3
+        }
+        //伪数组使用真数组的方法
+        //const arr = [];
+        Array.prototype.push.call(weiArr, 'd');
+        console.log(weiArr);
+
+        //argument
+        const funcA = function (...param) {
+            console.log('funcA', param);
+            console.log('funcA', arguments);
+        }
+
+        //箭头函数没有argument
+        const funcB = (param) => {
+            console.log('funcB', arguments);
+        }
+
+        funcA(1, 2, 3);
+        funcB(2);
+    </script>
+</body>
+
+</html>

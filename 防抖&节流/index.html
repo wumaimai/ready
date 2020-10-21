@@ -22,7 +22,7 @@
     // }
     window.onresize = debounce(function () {
         console.log(document.body.clientWidth);
-    }, 1000);
+    }, 1000, true);
     myFunction = throttle((param) => {
         console.log('我来了' + param[0] + document.getElementById('id').value);
     }, 1000);

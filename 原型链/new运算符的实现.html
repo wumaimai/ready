@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>new 运算符</title>
 </head>
+
 <body>
     <script>
+        // function new2(func) {
+        //     const obj = Object.create(func.prototype);
+        //     const result = func.apply(obj);
+        //     if (typeof result === "object") {
+        //         return result;
+        //     } else {
+        //         return obj;
+        //     }
+        // }
+
         //new运算符
         //声明一个构造函数 foo
         //当执行new运算符的时候，一个新对象被创建，它继承于foo.prototype
@@ -15,32 +27,30 @@
         //new foo等同于new foo(),只用在不传递任何参数的情况下。
         //如果构造函数返回了一个对象，那么这个对象会取代整个new出来的结果，如果构造函数没有返回
         //对象，那么new出来的结果为步骤1创建的对象
-        var func = function(a){
+        var func = function (a) {
             console.log("我是一个普通的函数！");
         }
 
-        function new2(func){
-            if(typeof func != "function")
-            {
+        function new2(func) {
+            if (typeof func != "function") {
                 return;
             }
             var obj = Object.create(func.prototype);
             var res = func.apply(this);
-            if(typeof res == "object")
-            {
+            if (typeof res == "object") {
                 return res;
             }
-            else
-            {
+            else {
                 return obj;
             }
         }
 
         var instance = new2(func);
-        
+
         console.log(instance instanceof func);  //true
         console.log(instance instanceof Object);    //true
         console.log(instance.__proto__.custructor === func);    //true
     </script>
 </body>
+
 </html>
